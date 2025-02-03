@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+  html{
+    scroll-behavior: smooth;
+  }
+  .ltr {
+    direction: ltr;
+  }
+  
+ 
+  .rtl {
+    direction: rtl;
+  }
+  
+  .ltr .slider-controls {
+    left: 5px;
+    right: unset;
+  }
+  
+  .rtl .slider-controls {
+    left: unset;
+    right: 5px;
+  }
+  
+  .slick-slide > div {
+    margin: 0 20px;
+    
+  }
+  .slick-list {
+    margin: 0 -20px;
+  }
+  div.slick-prev:before , div.slick-next:before {
+    font-size: 40px;
+    color:#3D437C;
+    border:none;
+   
+  }
+ 
