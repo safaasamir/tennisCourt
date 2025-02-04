@@ -21,6 +21,7 @@ const getValidationMessages = (language) => {
       date: {
         required: language === 'ar' ? "التاريخ مطلوب" : "Date is required",
         typeError: language === 'ar' ? "التاريخ مطلوب" : "Date is required",
+        pastDate: language === 'ar' ? "لا يمكن اختيار يوم قبل اليوم" : "You cannot select a past date",
       },
       time: {
         required: language === 'ar' ? "الوقت مطلوب" : "Time is required",
@@ -51,10 +52,20 @@ export const validationSchema = (language) => {
     courtSections: Yup.array().of(
       Yup.object({
         court: Yup.string().required(messages.courtSections.court),
-        date: Yup.date()
-          .typeError(messages.courtSections.date.typeError)
+        date: Yup.string()
+        .typeError(messages.courtSections.date.typeError)
           .required(messages.courtSections.date.required)
-          .nullable(),
+          .test(
+            "is-future-date",
+            messages.courtSections.date.pastDate,
+            (value) => {
+              if (!value) return false;
+              const today = new Date().toISOString().split("T")[0]
+              return value >= today;
+            }
+          ),
+
+
         time: Yup.string().required(messages.courtSections.time.required),
       })
     ),

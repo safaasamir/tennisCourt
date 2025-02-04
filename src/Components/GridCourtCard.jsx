@@ -171,12 +171,12 @@ function GridCourtCard({
                         />
                       </div>
                       <div className="flex space-x-4 w-full gap-3">
-                        <button className="bold shadow-lg hover:opacity-70 p-2 py-3 rounded-md border border-mainColor text-w transition-colors w-full">
+                        <button className=" h-14 bold shadow-lg hover:opacity-70 p-2 py-3 rounded-md border border-mainColor text-w transition-colors w-full">
                           {language === "ar" ? "تفاصيل أكثر" : "More Details"}
                         </button>
                         <button
                           onClick={handleBookNow}
-                          className={`bold shadow-lg p-2 py-3 rounded-md transition-colors w-full ${
+                          className={`bold shadow-lg p-2 py-3 rounded-md transition-colors w-full h-14 ${
                             !isSlotSelected
                               ? "bg-gray-400 text-gray-700 cursor-not-allowed"
                               : "bg-mainColor text-black hover:opacity-70"

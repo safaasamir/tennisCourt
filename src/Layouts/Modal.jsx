@@ -60,6 +60,15 @@ function Modal({
         updatedSections[index].price = selectedCourt.price;
         updatedSections[index].courtName = selectedCourt.name;
       }
+
+      updatedSections[index].date = "";
+      updatedSections[index].time = "";
+
+      setChooseDate((prevChooseDate) => {
+        const newChooseDate = { ...prevChooseDate };
+        delete newChooseDate[index]; 
+        return newChooseDate;
+      });
     }
 
     if (field === "date") {
@@ -73,6 +82,7 @@ function Modal({
     }
 
     setForm({ ...form, courtSections: updatedSections });
+    handleBlurCourtSection(index, field);
   };
 
   const getAvailableTimes = (courtId, index) => {
@@ -90,10 +100,24 @@ function Modal({
     const updatedErrors = { ...errors };
     const requiredMessage =
       language === "ar" ? "هذا الحقل مطلوب" : "This field is required";
-    if (!form.courtSections[index][field]) {
+    const pastDateMessage =
+      language === "ar"
+        ? "لا يمكن اختيار يوم قبل اليوم"
+        : "You cannot select a past date";
+
+    const value = form.courtSections[index][field];
+
+    if (!value) {
       updatedErrors[`courtSections[${index}].${field}`] = requiredMessage;
     } else {
       delete updatedErrors[`courtSections[${index}].${field}`];
+
+      if (field === "date") {
+        const today = new Date().toISOString().split("T")[0];
+        if (value < today) {
+          updatedErrors[`courtSections[${index}].${field}`] = pastDateMessage;
+        }
+      }
     }
 
     setErrors(updatedErrors);
