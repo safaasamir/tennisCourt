@@ -25,12 +25,12 @@ export default {
         bold: 700,    
       },
       screens: {
-        sm: "480px",   
-        md: "941px",   
-        lg: "1024px",  
-        xl: "1280px",  
-        '2xl': "1536px", 
-      },
+    sm: "480px",   
+    md: "768px",   
+    lg: "1024px",  
+    xl: "1280px",  
+    '2xl': "1536px", 
+},
     },
   },
   plugins: [

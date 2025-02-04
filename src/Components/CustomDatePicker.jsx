@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styles from "../Css/CustomdataPicker.module.css";
 import { useMediaQuery } from "react-responsive";
+import { ArrowRight } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 const DaysSelector = ({
   setChooseDate,
   selectedDay,
@@ -9,13 +11,17 @@ const DaysSelector = ({
 }) => {
   const [days, setDays] = useState([]);
   const [currentDate, setCurrentDate] = useState(new Date());
-
+  const [isPrevDisabled, setIsPrevDisabled] = useState(true);
+  const isSmallScreen = useMediaQuery({ query: "(max-width: 768px)" });
   const getUpcomingSevenDays = () => {
     const daysArray = [];
     const startDate = new Date(currentDate);
-    startDate.setDate(currentDate.getDate() - 3);
+    if (!isSmallScreen) {
+      startDate.setDate(currentDate.getDate() - 3);
+    }
 
-    for (let i = 0; i < 7; i++) {
+    const totalDays = isSmallScreen ? 3 : 7;
+    for (let i = 0; i < totalDays; i++) {
       const nextDay = new Date(startDate);
       nextDay.setDate(startDate.getDate() + i);
 
@@ -46,7 +52,7 @@ const DaysSelector = ({
 
   useEffect(() => {
     getUpcomingSevenDays();
-  }, [currentDate]);
+  }, [currentDate, isSmallScreen]);
 
   useEffect(() => {
     const todayFormatted = new Date().toLocaleDateString("en-CA");
@@ -69,18 +75,14 @@ const DaysSelector = ({
     }
   };
 
-  // const handlePrevSevenDays = () => {
-  //   setCurrentDate((prevDate) => {
-  //     const newDate = new Date(prevDate);
-  //     newDate.setDate(prevDate.getDate() - 7);
-  //     return newDate;
-  //   });
-  // };
-
   const handlePrevSevenDays = () => {
     setCurrentDate((prevDate) => {
       const newDate = new Date(prevDate);
-      newDate.setDate(prevDate.getDate() - 7);
+      if (isSmallScreen) {
+        newDate.setDate(prevDate.getDate() - 3);
+      } else {
+        newDate.setDate(prevDate.getDate() - 7);
+      }
 
       const today = new Date();
       today.setHours(0, 0, 0, 0);
@@ -92,11 +94,31 @@ const DaysSelector = ({
       }
     });
   };
+
+  useEffect(() => {
+    if (days.length > 0) {
+      if (isSmallScreen) {
+        setIsPrevDisabled(
+          days[0]?.formattedDate === new Date().toISOString().split("T")[0]
+        );
+      } else {
+        setIsPrevDisabled(
+          days[3]?.formattedDate === new Date().toISOString().split("T")[0]
+        );
+      }
+    }
+  }, [days, currentDate]);
+
   const handleNextSevenDays = () => {
     setCurrentDate((prevDate) => {
       const newDate = new Date(prevDate);
-      newDate.setDate(prevDate.getDate() + 7);
-      return newDate;
+      if (isSmallScreen) {
+        newDate.setDate(prevDate.getDate() + 3);
+        return newDate;
+      } else {
+        newDate.setDate(prevDate.getDate() + 7);
+        return newDate;
+      }
     });
   };
 
@@ -105,14 +127,18 @@ const DaysSelector = ({
   })} ${currentDate.getFullYear()}`;
 
   return (
-    <div className={`${styles.container}`}>
-      <div className={`${styles.monthyear}`}>
-        <button onClick={handlePrevSevenDays} className={`${styles.arrow}`}>
-          ←
+    <div className={`${styles.container}  `}>
+      <div className={`${styles.monthyear} `}>
+        <button
+          onClick={handlePrevSevenDays}
+          className={`${styles.arrow}`}
+          style={{ visibility: isPrevDisabled ? "hidden" : "visible" }}
+        >
+          <ArrowLeft />
         </button>
         <div>{monthYear}</div>
         <button onClick={handleNextSevenDays} className={`${styles.arrow}`}>
-          →
+          <ArrowRight />
         </button>
       </div>
 
@@ -120,7 +146,9 @@ const DaysSelector = ({
         {days.map((day) => (
           <div
             key={day.formattedDate}
-            className={`flex flex-col items-center justify-center p-3 rounded-md w-16 h-16 cursor-pointer transition-all duration-300 ease-in-out 
+            className={`flex flex-col items-center justify-center  rounded-md ${
+              isSmallScreen ? "w-3 h-3 p-1" : "w-16 h-16 p-3"
+            }   cursor-pointer transition-all duration-300 ease-in-out 
               ${
                 selectedDay === day.formattedDate
                   ? "bg-mainColor text-mainTextColor shadow-lg transform scale-105"
@@ -134,8 +162,12 @@ const DaysSelector = ({
             `}
             onClick={() => handleDayClick(day)}
           >
-            <div className="text-xl">{day.dayName}</div>
-            <div className="text-md">{day.date}</div>
+            <div className={` ${isSmallScreen ? "text-lg" : "text-xl"}`}>
+              {day.dayName}
+            </div>
+            <div className={`${isSmallScreen ? "text-lg" : "text-xl"}`}>
+              {day.date}
+            </div>
           </div>
         ))}
       </div>

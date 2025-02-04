@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 
@@ -11,13 +11,13 @@ function Footer() {
       : `Copyright © ${new Date().getFullYear()} - All rights reserved by 7 Tennis Academy`;
 
   return (
-    <footer className="footer footer-center bg-thirdColor text-thirdTextColor rounded p-10 ">
+    <footer className="footer footer-center bg-thirdColor text-thirdTextColor rounded pb-3 pt-3">
       <nav>
         <Link
           to={"#"}
-          className=" w-32 h-20 bg-white flex justify-center items-center rounded-full  "
+          className=" w-32 h-10  flex justify-center items-center rounded-full  "
         >
-          <img src="/logo.png" />
+          <img src="/logofooter.png" />
         </Link>
       </nav>
 

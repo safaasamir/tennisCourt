@@ -39,7 +39,6 @@ function Modal({
 
       setChooseDate(newChooseDate);
     }
-    console.log(chooseDate);
   }, [open, form, setChooseDate]);
 
   const addCourtSection = () => {

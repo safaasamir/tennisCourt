@@ -85,7 +85,9 @@ function GridCourtCard({
   };
 
   return (
-    <div className={`container mx-auto ${styles.App}`}>
+    <div
+      className={` container mx-auto lg:max-w-screen-2xl px-5 md:px-14   ${styles.App}`}
+    >
       {isLoading ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-6 pb-20 relative">
           {Array.from({ length: 6 }).map((_, index) => (
@@ -102,7 +104,7 @@ function GridCourtCard({
         </div>
       ) : (
         <div
-          className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 pb-20 relative ${
+          className={` grid  grid-cols-1 md:grid-cols-2 xl:grid-cols-3  gap-6 pb-20 relative  ${
             language === "ar" ? "rtl" : "ltr"
           }`}
         >
@@ -115,9 +117,7 @@ function GridCourtCard({
             return (
               <div
                 key={item.id}
-                className={`shadow-2xl rounded-lg overflow-auto bg-white relative ${
-                  index < 6 ? "col-span-2" : "md:col-span-2"
-                }`}
+                className={`shadow-2xl rounded-lg overflow-auto bg-white relative col-span-1 `}
                 dir={language === "ar" ? "rtl" : "ltr"}
               >
                 <div className="relative w-full h-[400px]">
