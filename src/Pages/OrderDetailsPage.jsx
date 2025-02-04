@@ -48,7 +48,7 @@ function OrderDetailsPage() {
         "http://185.175.208.7/api/timeslots/reserve",
         data
       );
-      console.log(response.data.data.iframe_url);
+
       setOrder(response.data.data);
       if (response.status === 200) {
         window.location.href = response.data.data.iframe_url;
@@ -71,11 +71,16 @@ function OrderDetailsPage() {
     }
   };
 
-  if (!data) return <div>Loading...</div>;
+  if (!data)
+    return (
+      <div className="h-[600px] flex items-center justify-center">
+        <img src="./spinner.gif" width="150px" />
+      </div>
+    );
 
   return (
     <div
-      className={`bg-slate-50 min-h-screen ${
+      className={`bg-slate-50 min-h-screen  ${
         language === "ar" ? "text-right" : "text-left"
       }`}
       dir={language === "ar" ? "rtl" : "ltr"}
@@ -163,7 +168,7 @@ function OrderDetailsPage() {
                 <div className="md:col-span-1 flex justify-center md:justify-start">
                   <img
                     className="w-full h-full lg:w-32 lg:h-24 rounded-md"
-                    src="./courtsscaled.jpg"
+                    src={slot?.cover_image || "./aboutustennis.jpg"}
                     alt="Court"
                   />
                 </div>
@@ -205,7 +210,7 @@ function OrderDetailsPage() {
               </React.Fragment>
             ))}
           </div>
-          {console.log(order)}
+
           <div className="md:hidden w-full mt-5">
             <span className="text-lg font-bold ms-2">
               {language === "ar" ? "إجمالي الحجز: " : "Reservation Total: "}

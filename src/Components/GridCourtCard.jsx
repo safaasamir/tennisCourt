@@ -15,6 +15,7 @@ function GridCourtCard({
   formCourtsDate,
   selectLoading,
   isLoading,
+  slides
 }) {
   const { language } = useLanguage();
 
@@ -122,11 +123,11 @@ function GridCourtCard({
               >
                 <div className="relative w-full h-[400px]">
                   <img
-                    src={item.linkimage}
+                    src={item?.cover_image || slides[0]?.url} 
                     alt={item.name}
                     className="w-full h-full object-cover transition-all duration-300"
                   />
-                  <div className="absolute inset-0 bg-black bg-opacity-50 opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <div className="absolute inset-0 bg-black bg-opacity-55 opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <div className="flex flex-col items-center p-4 w-full text-white">
                       <h1 className="text-2xl font-bold mb-2">{item.name}</h1>
                       <p className="text-lg mb-4">{item.description}</p>
@@ -140,7 +141,7 @@ function GridCourtCard({
                           {language === "ar" ? "جنيه" : "EGP"}
                         </span>
                       </p>
-                      <div className="w-full">
+                      <div className="w-full  h-28">
                         <SelectComponent
                           name="slots"
                           label={language === "ar" ? "الوقت" : "Time"}
@@ -170,7 +171,7 @@ function GridCourtCard({
                           selectLoading={selectLoading}
                         />
                       </div>
-                      <div className="flex space-x-4 w-full gap-3">
+                      <div className="flex space-x-4 w-full gap-3  h-16 items-center">
                         <button className=" h-14 bold shadow-lg hover:opacity-70 p-2 py-3 rounded-md border border-mainColor text-w transition-colors w-full">
                           {language === "ar" ? "تفاصيل أكثر" : "More Details"}
                         </button>

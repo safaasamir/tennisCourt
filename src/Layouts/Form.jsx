@@ -21,6 +21,7 @@ const Form = React.memo(
     handleButtonClick,
     selectLoading,
     setSelectedDay,
+    slides
   }) => {
     const navigate = useNavigate();
     const { language } = useLanguage();
@@ -184,6 +185,7 @@ const Form = React.memo(
                   setChooseDate={setChooseDate}
                   selectLoading={selectLoading}
                   setSelectedDay={setSelectedDay}
+                  slides={slides}
                 />
               </div>
               <div className="flex justify-center items-center">

@@ -18,6 +18,7 @@ function Modal({
   chooseDate,
   setChooseDate,
   formCourtsDate,
+  slides,
 }) {
   const { language } = useLanguage();
 
@@ -169,7 +170,12 @@ function Modal({
 
   const courtOptions = courts?.map((court) => ({
     value: court.id,
-    label: court.name,
+    label: (
+    <div style={{ display: "flex", alignItems: "center" }}>
+      <img src={court?.cover_image||slides[0]?.url} width="50px" alt="court" style={{ marginRight: "5px", borderRadius: "5px" }} />
+      {court.name}
+    </div>
+  ),
   }));
   const timeOptions = (courtId, index) => {
     const availableTimes = getAvailableTimes(courtId, index);
@@ -178,7 +184,7 @@ function Modal({
       label: `${time.from} - ${time.to}`,
     }));
   };
-
+  
   return (
     <div
       onClick={onClose}

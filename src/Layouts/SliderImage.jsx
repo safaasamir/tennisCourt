@@ -62,6 +62,7 @@ function SliderImage(props) {
               setOpen={setOpen}
               selectLoading={selectLoading}
               setSelectedDay={setSelectedDay}
+              slides={slides}
             />
           </div>
         }

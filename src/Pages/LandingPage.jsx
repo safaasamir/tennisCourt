@@ -23,10 +23,10 @@ function LandingPage() {
         date: "",
         time: "",
         price: "",
+        cover_image:""
       },
     ],
   });
-
   const [gridCourtformTimeandDate, setGridCourtformTimeandDate] = useState({});
   const formRef = useRef(null);
   const [courts, setCourts] = useState([]);
@@ -65,6 +65,7 @@ function LandingPage() {
   const fetchCourtData = async () => {
     try {
       setIsLoading(true);
+
       const response = await axios.get(
         `http://185.175.208.7/api/tennis-courts`
       );
@@ -246,6 +247,7 @@ function LandingPage() {
   };
 
   return (
+    
     <main className="font-bricolage-grotesque bg-slate-50">
       <section ref={formRef}>
         <ToastContainer />
@@ -289,6 +291,7 @@ function LandingPage() {
           setSelectedDay={setSelectedDay}
           selectLoading={selectLoading}
           isLoading={isLoading}
+          slides={slides}
         />
         <AboutUs />
       </section>

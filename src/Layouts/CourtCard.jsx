@@ -21,6 +21,7 @@ function CourtCard({
   setSelectedDay,
   selectLoading,
   isLoading = false,
+  slides
 }) {
   const { language } = useLanguage();
   return (
@@ -58,6 +59,7 @@ function CourtCard({
         selectLoading={selectLoading}
         isLoading={isLoading}
         setSelectedDay={setSelectedDay}
+        slides={slides}
       />
     </div>
   );
