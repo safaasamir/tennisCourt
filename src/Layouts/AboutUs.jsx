@@ -43,7 +43,7 @@ function AboutUs() {
           </p>
 
           <button
-            className="flex items-center gap-1 text-blue-500 font-semibold mt-2 md:hidden"
+            className="flex items-center gap-1 text-thirdColor font-semibold mt-2 md:hidden"
             onClick={() => setExpanded(!expanded)}
           >
             {expanded ? (
