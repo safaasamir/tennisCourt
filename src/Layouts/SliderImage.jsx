@@ -25,6 +25,8 @@ function SliderImage(props) {
     handleButtonClick,
     selectLoading,
     setSelectedDay,
+    setGridCourtformTimeandDate,
+    setFormCourtsDate
   } = props;
   useEffect(() => {
     const interval = setInterval(() => {
@@ -63,6 +65,9 @@ function SliderImage(props) {
               selectLoading={selectLoading}
               setSelectedDay={setSelectedDay}
               slides={slides}
+              
+              setGridCourtformTimeandDate={setGridCourtformTimeandDate}
+              setFormCourtsDate={setFormCourtsDate}
             />
           </div>
         }

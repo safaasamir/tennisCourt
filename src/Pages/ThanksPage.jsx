@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { Link } from 'react-router-dom';
 
@@ -6,7 +6,10 @@ import { Link } from 'react-router-dom';
 const ThanksPage = () => {
   const { language } = useLanguage(); 
 
+  useEffect(() => {
+    localStorage.removeItem("formData");
   
+  },[])
   
   const heading = language === "ar" ? " ! شكرا لك " : "Thank You ! ";
   const message = language === "ar" 

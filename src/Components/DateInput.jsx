@@ -55,6 +55,7 @@ function DataInput(props) {
             textAlign: language === "ar" ? "right" : "left",
             direction: language === "ar" ? "rtl" : "ltr",
           }}
+          minDate={new Date()}
           onBlur={onBlur}
         />
       </label>

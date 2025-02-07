@@ -11,7 +11,7 @@ const RejectPage = () => {
       ? "نعتذر، حدث خطأ أثناء محاولة الدفع. يرجى المحاولة مرة أخرى أو التواصل مع الدعم."
       : "Sorry, there was an error processing your payment. Please try again or contact support.";
   const buttonText =
-    language === "ar" ? "العودة إلى الصفحة الرئيسية" : "Go Back Home";
+    language === "ar" ? "العودة لتفاصيل الطلب" : "return to order details";
 
   return (
     <div
@@ -28,7 +28,7 @@ const RejectPage = () => {
         </h1>
         <p className="text-lg text-gray-600 mb-8">{message}</p>
         <Link
-          to="/"
+          to="/orderDetails"
           className="inline-block bg-red-600 text-white font-semibold px-6 py-3 rounded-md hover:opacity-70 transition-colors duration-300"
         >
           {buttonText}

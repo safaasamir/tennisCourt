@@ -31,7 +31,7 @@ function Header() {
           </div>
           <ul
             tabIndex={0}
-            className="menu-sm dropdown-content bg-thirdColor rounded-box z-[1] w-52"
+            className="menu-sm dropdown-content bg-mainColor rounded-box z-[1] w-52"
           >
             <li className="hover:text-secondryTextColor font-bold text-2xl">
               <Link className="cursor-pointer" to="/" duration={800}>

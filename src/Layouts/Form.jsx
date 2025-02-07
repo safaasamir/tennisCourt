@@ -21,7 +21,9 @@ const Form = React.memo(
     handleButtonClick,
     selectLoading,
     setSelectedDay,
-    slides
+    slides,
+    setGridCourtformTimeandDate,
+    setFormCourtsDate
   }) => {
     const navigate = useNavigate();
     const { language } = useLanguage();
@@ -174,6 +176,10 @@ const Form = React.memo(
                   open={open}
                   onClose={() => {
                     setOpen(false);
+                    setChooseDate("");
+                    setSelectedDay("");
+                    setFormCourtsDate([]);
+                    setGridCourtformTimeandDate({});
                   }}
                   setForm={setForm}
                   form={form}

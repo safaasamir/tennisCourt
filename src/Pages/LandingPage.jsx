@@ -11,6 +11,7 @@ import { validationSchema } from "../utils/validation/FormSchema";
 import * as Yup from "yup";
 import { useLanguage } from "../context/LanguageContext";
 import { set } from "date-fns";
+import { use } from "react";
 function LandingPage() {
   const [form, setForm] = useState({
     name: "",
@@ -128,6 +129,9 @@ function LandingPage() {
     }
   }, [chooseDate]);
 
+  useEffect(() => {
+   localStorage.removeItem('formData'); 
+  },[])
   const createAllSelectedSlots = () => {
     const result = Object.keys(gridCourtformTimeandDate)
       .filter((courtId) => gridCourtformTimeandDate[courtId]?.slots)
@@ -270,6 +274,9 @@ function LandingPage() {
           setOpen={setOpen}
           selectLoading={selectLoading}
           setSelectedDay={setSelectedDay}
+          setGridCourtformTimeandDate={setGridCourtformTimeandDate}
+          setFormCourtsDate={setFormCourtsDate}
+          
         />
       </section>
       <section>
