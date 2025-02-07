@@ -96,7 +96,7 @@ function OrderDetailsPage() {
               <span className="text-lg hidden md:block">
                 {language === "ar" ? "إجمالي الحجز: " : "Reservation Total: "}
                 <span className="font-bold text-2xl text-thirdColor">
-                  {language === "ar" ? ` جنيه${total}` : ` ${total}EGP`}
+                  {language === "ar" ? `${total} جنيه` : ` ${total}EGP`}
                 </span>
               </span>
 
